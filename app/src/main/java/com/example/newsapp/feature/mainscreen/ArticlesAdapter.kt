@@ -11,7 +11,7 @@ import com.example.newsapp.feature.domain.ArticleModel
 class ArticlesAdapter : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
 
-    private var articlesData: List<ArticlesAdapter> = emptyList()
+    private var articlesData: List<ArticleModel> = emptyList()
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder)

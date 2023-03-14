@@ -43,7 +43,10 @@ dependencies {
     def gson_version = "2.9.0"
     def koin_version = "3.2.0"
     def nav_version = "2.5.3"
-    def logging_interceptor = "4.9.2"
+    def logging_interceptor = "4.2.1"
+    def okhttp = "4.2.1"
+    def okhttp_urlconnection = "4.2.1"
+
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -74,5 +77,9 @@ dependencies {
 
     implementation "androidx.fragment:fragment-ktx:1.5.4"
     // LoggingInterceptor
-    implementation"com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+
+    implementation "com.squareup.okhttp3:okhttp:$okhttp"
+
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$okhttp_urlconnection"
 }

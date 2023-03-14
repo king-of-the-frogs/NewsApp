@@ -17,13 +17,6 @@ val appModule = module {
     single<OkHttpClient> {
         OkHttpClient
             .Builder()
-            .addInterceptor(
-                HttpLoggingInterceptor { message ->
-                    Log.d("OkHttp", message)
-                }.apply {
-                    setLevel(HttpLoggingInterceptor.Level.BODY)
-                }
-            )
             .build()
     }
 
