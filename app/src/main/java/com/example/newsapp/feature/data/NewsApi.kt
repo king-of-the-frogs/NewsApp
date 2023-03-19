@@ -1,6 +1,6 @@
 package com.example.newsapp.feature.data
 
-import com.example.newsapp.API_KEY
+import com.example.newsapp.di.API_KEY
 import com.example.newsapp.feature.data.module.ArticlesRemoteModel
 import retrofit2.http.GET
 import retrofit2.http.Query

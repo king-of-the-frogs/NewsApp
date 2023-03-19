@@ -1,8 +1,9 @@
-package com.example.newsapp
+package com.example.newsapp.di
 
-import android.util.Log
+import androidx.room.Room
+import com.example.newsapp.AppDatabase
 import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,13 +12,15 @@ import retrofit2.converter.gson.GsonConverterFactory
 private const val BASE_URL = "https://newsapi.org/"
 
 const val API_KEY = "96089324eb6d4eef80cf2bb453738a51"
+const val APP_DATABASE = "APP_DATABASE"
 
-val appModule = module {
+val networkModule = module {
 
     single<OkHttpClient> {
         OkHttpClient
             .Builder()
             .build()
+
     }
 
     single<Retrofit> {
@@ -27,5 +30,17 @@ val appModule = module {
             .addConverterFactory(GsonConverterFactory.create())
             .client(get<OkHttpClient>())
             .build()
+    }
+}
+
+val databaseModule = module {
+    single {
+        Room
+            .databaseBuilder(androidContext(), AppDatabase::class.java, APP_DATABASE)
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+    single {
+        get<AppDatabase>().bookmarksDao()
     }
 }

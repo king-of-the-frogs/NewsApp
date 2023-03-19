@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NewsApp</string>
+    <string name="main">Главная</string>
+    <string name="favorite">Избранное</string>
 </resources>

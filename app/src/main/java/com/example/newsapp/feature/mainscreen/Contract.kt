@@ -7,6 +7,9 @@ import com.example.newsapp.feature.domain.ArticleModel
 data class ViewState(
     val articles: List<ArticleModel>
 )
+sealed class UiEvent : Event {
+    data class OnArticleClicked(val index: Int) : UiEvent()
+}
 
 sealed class DataEvent : Event {
     object LoadArticles : DataEvent()
