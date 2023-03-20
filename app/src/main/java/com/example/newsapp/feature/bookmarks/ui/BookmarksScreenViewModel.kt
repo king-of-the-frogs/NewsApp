@@ -6,7 +6,8 @@ import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import kotlinx.coroutines.launch
 
-class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) : BaseViewModel<ViewState>() {
+class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
+    BaseViewModel<ViewState>() {
 
     init {
         processDataEvent(DataEvent.LoadBookmarks)
@@ -15,7 +16,7 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) : Ba
     override fun initialViewState(): ViewState = ViewState(bookmarksArticle = emptyList())
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
-        when(event) {
+        when (event) {
             is DataEvent.LoadBookmarks -> {
                 viewModelScope.launch {
                     interactor.read().fold(

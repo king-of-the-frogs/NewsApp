@@ -22,7 +22,7 @@ abstract class BaseViewModel<VIEW_STATE> : ViewModel() {
     }
 
     private fun updateState(event: Event) = viewModelScope.launch {
-        val newViewState = reduce(event,viewState.value ?: initialViewState())
+        val newViewState = reduce(event, viewState.value ?: initialViewState())
         if (newViewState != null && newViewState != viewState.value) {
             viewState.value = newViewState
         }

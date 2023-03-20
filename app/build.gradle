@@ -45,6 +45,7 @@ dependencies {
     def koin_version = "3.2.0"
     def room_version = "2.5.0"
 
+
     implementation "com.squareup.okhttp3:okhttp:4.2.1"
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:4.2.1"

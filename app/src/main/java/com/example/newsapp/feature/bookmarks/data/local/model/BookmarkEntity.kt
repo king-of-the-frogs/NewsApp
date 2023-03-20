@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.example.newsapp.feature.bookmarks.di.BOOKMARKS_TABLE
 
 @Entity(tableName = BOOKMARKS_TABLE)
-data class BookmarkEntity (
+data class BookmarkEntity(
     @PrimaryKey
     @ColumnInfo(name = "url")
     val url: String,

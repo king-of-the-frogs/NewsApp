@@ -1,8 +1,6 @@
 package com.example.newsapp.feature.bookmarks.data.local
 
-import androidx.room.*
 import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
-import com.example.newsapp.feature.bookmarks.di.BOOKMARKS_TABLE
 
 class BookmarksLocalSource(private val bookmarksDao: BookmarksDao) {
 

@@ -1,11 +1,11 @@
 package com.example.newsapp.feature.bookmarks.data.local
 
-import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
 import com.example.newsapp.feature.bookmarks.data.toDomain
 import com.example.newsapp.feature.bookmarks.data.toEntity
 import com.example.newsapp.feature.domain.ArticleModel
 
-class BookmarksRepositoryImpl(private val bookmarksLocalSource: BookmarksLocalSource) : BookmarksRepository {
+class BookmarksRepositoryImpl(private val bookmarksLocalSource: BookmarksLocalSource) :
+    BookmarksRepository {
     override suspend fun create(model: ArticleModel) {
         bookmarksLocalSource.create(model.toEntity())
     }

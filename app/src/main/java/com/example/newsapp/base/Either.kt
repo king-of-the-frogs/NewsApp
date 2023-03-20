@@ -1,6 +1,6 @@
 package com.example.newsapp.base
 
-sealed class Either<out LEFT,out RIGHT> {
+sealed class Either<out LEFT, out RIGHT> {
 
     class Left<LEFT>(val value: LEFT) : Either<LEFT, Nothing>()
     class Right<RIGHT>(val value: RIGHT) : Either<Nothing, RIGHT>()
@@ -11,7 +11,7 @@ sealed class Either<out LEFT,out RIGHT> {
     val isLeft: Boolean
         get() = this is Left
 
-    inline fun <TYPE> fold (onError: (LEFT) -> TYPE, onSuccess: (RIGHT) -> TYPE): TYPE =
+    inline fun <TYPE> fold(onError: (LEFT) -> TYPE, onSuccess: (RIGHT) -> TYPE): TYPE =
         when (this) {
             is Left -> onError(this.value)
             is Right -> onSuccess(this.value)
@@ -29,7 +29,8 @@ sealed class Either<out LEFT,out RIGHT> {
             is Right -> Right(this.value)
         }
 }
-inline fun <TYPE,LEFT,RIGHT> Either<LEFT, RIGHT>.flatMap(
+
+inline fun <TYPE, LEFT, RIGHT> Either<LEFT, RIGHT>.flatMap(
     transform: (RIGHT) -> Either<LEFT, TYPE>
 ): Either<LEFT, TYPE> {
     return when (this) {

@@ -1,8 +1,6 @@
 package com.example.newsapp.feature.domain
 
-import android.media.Image
-
-data class ArticleModel (
+data class ArticleModel(
     val author: String,
     val title: String,
     val description: String,
