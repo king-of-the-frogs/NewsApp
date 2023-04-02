@@ -1,6 +1,7 @@
 package com.example.newsapp
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.newsapp.di.databaseModule
 import com.example.newsapp.di.networkModule
 import com.example.newsapp.feature.bookmarks.di.bookmarksModule
@@ -19,5 +20,7 @@ class App : Application() {
             androidContext(this@App)
             modules(networkModule, mainScreenModule, bookmarksModule, databaseModule)
         }
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
     }
 }
