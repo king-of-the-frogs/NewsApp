@@ -39,7 +39,10 @@ class MainScreenViewModel(
                 return null
             }
             is DataEvent.OnLoadArticlesSucceed -> {
-                return previousState.copy(articleList = event.articles, articleShown = event.articles)
+                return previousState.copy(
+                    articleList = event.articles,
+                    articleShown = event.articles
+                )
             }
             is UiEvent.OnArticleClicked -> {
                 viewModelScope.launch {

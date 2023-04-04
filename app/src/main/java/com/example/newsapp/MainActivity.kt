@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun selectTab(fragment: Fragment) {
-        supportFragmentManager.beginTransaction().replace(R.id.container, MainScreenFragment())
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()
     }
 
