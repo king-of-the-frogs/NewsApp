@@ -40,14 +40,5 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun applyTheme(context: Context) {
-        if (isDarkModeEnabled()) {
-            // Применение настроек ночной темы
-            context.setTheme(R.style.AppThemeDark)
-        } else {
-            // Применение настроек дневной темы
-            context.setTheme(R.style.AppThemeLight)
-        }
-    }
 
 }

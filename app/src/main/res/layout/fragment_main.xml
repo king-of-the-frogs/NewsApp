@@ -5,58 +5,55 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutToolbar"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:orientation="horizontal"
-        android:background="@color/white"
+        android:background="#424242"
         android:elevation="5dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_marginHorizontal="16dp"
-            android:textSize="16sp"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
             android:text="@string/app_name"
-
-            app:layout_constraintTop_toTopOf="@+id/ivSearch"
-            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/ivSearch"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivSearch" />
 
 
         <EditText
             android:id="@+id/etSearch"
-            android:layout_marginHorizontal="16dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ivSearch"
             app:layout_constraintBottom_toBottomOf="@+id/ivSearch"
-            app:layout_constraintEnd_toStartOf="@+id/ivSearch" />
+            app:layout_constraintEnd_toStartOf="@+id/ivSearch"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivSearch" />
 
         <ImageView
-
             android:id="@+id/ivSearch"
-            android:layout_marginEnd="8dp"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_baseline_search_24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_baseline_search_24"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvArticles"

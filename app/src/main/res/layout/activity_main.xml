@@ -8,14 +8,17 @@
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white_100"
+        app:layout_constraintBottom_toTopOf="@id/bnvBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bnvBar"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvBar"
-        android:background="#CDCFD6"
+        android:background="#424242"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
