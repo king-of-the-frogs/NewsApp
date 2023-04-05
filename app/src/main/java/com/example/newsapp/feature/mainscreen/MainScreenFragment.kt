@@ -4,14 +4,12 @@ package com.example.newsapp.feature.mainscreen
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-
 import android.view.View
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import androidx.core.view.isVisible
 import com.example.newsapp.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,12 +21,17 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
     private val tvTitle: TextView by lazy { requireActivity().findViewById(R.id.tvTitle) }
     private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
 
-
     private val adapter: ArticlesAdapter by lazy {
-        ArticlesAdapter { index ->
-            viewModel.processUiEvent(UiEvent.OnArticleClicked(index))
-        }
+        ArticlesAdapter(
+            onItemClicked = { index ->
+                viewModel.processUiEvent(UiEvent.OnArticleClicked(index))
+            },
+            onBookmarkClick = { article ->
+                viewModel.processUiEvent(UiEvent.OnBookmarkClicked(article))
+            }
+        )
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,4 +62,3 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
         adapter.setData(viewState.articleShown)
     }
 }
-

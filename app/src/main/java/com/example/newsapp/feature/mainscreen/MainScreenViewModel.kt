@@ -50,6 +50,12 @@ class MainScreenViewModel(
                 }
                 return null
             }
+            is UiEvent.OnBookmarkClicked -> {
+                viewModelScope.launch {
+                    bookmarksInteractor.create(event.article)
+                }
+                return null
+            }
 
             is UiEvent.OnSearchButtonClicked -> {
                 return previousState.copy(

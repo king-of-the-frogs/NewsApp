@@ -13,10 +13,13 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
         processDataEvent(DataEvent.LoadBookmarks)
     }
 
-    override fun initialViewState(): ViewState = ViewState(bookmarksArticle = emptyList())
+    override fun initialViewState() = ViewState(
+        bookmarksList = emptyList(),
+        bookmarksShown = emptyList(),
+    )
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
-        when (event) {
+        return when (event) {
             is DataEvent.LoadBookmarks -> {
                 viewModelScope.launch {
                     interactor.read().fold(
@@ -30,9 +33,13 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
             }
 
             is DataEvent.OnSuccessBookmarksLoaded -> {
-                return previousState.copy(bookmarksArticle = event.bookmarksArticle)
+                return previousState.copy(
+                    bookmarksShown = event.bookmarks,
+                    bookmarksList = event.bookmarks
+                )
             }
-            else -> return null
+
+            else -> {return null}
         }
     }
 }

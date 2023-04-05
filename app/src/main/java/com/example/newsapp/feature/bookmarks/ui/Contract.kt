@@ -4,13 +4,13 @@ import com.example.newsapp.base.Event
 import com.example.newsapp.feature.domain.ArticleModel
 
 data class ViewState(
-    val bookmarksArticle: List<ArticleModel>
+    val bookmarksShown: List<ArticleModel>,
+    val bookmarksList: List<ArticleModel>
 )
 
 sealed class UiEvent()
-sealed class DataEvent() : Event {
 
+sealed class DataEvent() : Event {
     object LoadBookmarks : DataEvent()
-    data class OnSuccessBookmarksLoaded(val bookmarksArticle: List<ArticleModel>) : DataEvent()
-    data class OnFailedBookmarksLoaded(val throwable: Throwable) : DataEvent()
+    data class OnSuccessBookmarksLoaded(val bookmarks: List<ArticleModel>) : DataEvent()
 }
