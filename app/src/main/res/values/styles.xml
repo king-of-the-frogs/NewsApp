@@ -78,6 +78,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+
     <style name="Subtitle2" parent="CondensedBase">
         <item name="android:textColor">?attr/colorAccented</item>
         <item name="android:textSize">14sp</item>

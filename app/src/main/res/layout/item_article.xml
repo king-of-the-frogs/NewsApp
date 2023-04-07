@@ -2,18 +2,28 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="150dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="16dp"
+    android:backgroundTint="#130E43"
     android:id="@+id/news">
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="1dp"
+        android:src="@drawable/form"/>
     <TextView
         android:id="@+id/tvAuthor"
+        android:textColor="@color/white_100"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="top"/>
 
     <TextView
         android:id="@+id/tvTitle"
+        android:textColor="@color/white_100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -21,12 +31,14 @@
 
     <TextView
         android:id="@+id/tvDate"
+        android:layout_margin="10dp"
+        android:textColor="@color/white_100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom" />
 
 
-    <ImageView
+    <Button
         android:id="@+id/ivAddFav"
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
@@ -36,10 +48,10 @@
         android:src="@drawable/ic_baseline_star_border_24" />
 
     <TextView
-        android:src="@drawable/ic_baseline_star_24"
         android:id="@+id/tvUrl"
-
+        android:textColor="@color/white_100"
         android:text="@string/origUrl"
+        android:layout_margin="10dp"
         android:autoLink="web"
         android:linksClickable="true"
         android:layout_width="wrap_content"

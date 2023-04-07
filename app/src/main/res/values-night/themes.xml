@@ -1,26 +1,29 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="BaseTheme">
+    <style name="AppThemeDark" parent="BaseTheme.Night">
+        <item name="android:statusBarColor">@color/black_100</item>
+    </style>
+    <style name="BaseTheme.Night">
         <item name="colorPrimary">@color/black_100</item>
         <item name="colorSecondary">@color/black_100</item>
-        <item name="colorOnPrimary">@color/white_100</item>
+        <item name="colorOnPrimary">@color/black_100</item>
         <item name="colorAccent">@color/black_100</item>
 
-        <item name="colorSurfaceMain">@color/white_100</item>
-        <item name="colorSurfaceAccent">@color/grey_200</item>
-        <item name="colorSurfaceNative">@color/grey_400</item>
-        <item name="colorSurfaceVariant">@color/white_100</item>
+        <item name="colorSurfaceMain">@color/black_100</item>
+        <item name="colorSurfaceAccent">@color/black_100</item>
+        <item name="colorSurfaceNative">@color/black_100</item>
+        <item name="colorSurfaceVariant">@color/black_100</item>
 
-        <item name="android:colorBackground">@color/white_100</item>
-        <item name="colorBackground">?android:colorBackground</item>
+        <item name="android:colorBackground">@color/black_100</item>
+        <item name="colorBackground">@color/black_100</item>
         <item name="colorAccented">@color/black_100</item>
 
-        <item name="colorOnSurfaceFirstPriority">@color/dark_900</item>
-        <item name="colorOnSurfaceHighEmphasis">@color/dark_500</item>
-        <item name="colorOnSurfaceMediumEmphasis">@color/dark_300</item>
-        <item name="colorOnSurfaceDisabled">@color/grey_800</item>
-        <item name="colorOnSurfaceOutline">@color/grey_400</item>
-        <item name="colorOnSurfaceAccent">@color/dark_900</item>
+        <item name="colorOnSurfaceFirstPriority">@color/black_100</item>
+        <item name="colorOnSurfaceHighEmphasis">@color/black_100</item>
+        <item name="colorOnSurfaceMediumEmphasis">@color/black_100</item>
+        <item name="colorOnSurfaceDisabled">@color/black_100</item>
+        <item name="colorOnSurfaceOutline">@color/black_100</item>
+        <item name="colorOnSurfaceAccent">@color/black_100</item>
 
         <item name="colorSurface">?attr/colorSurfaceMain</item>
     </style>

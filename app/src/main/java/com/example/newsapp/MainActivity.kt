@@ -5,6 +5,8 @@ import android.content.res.Resources
 import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.newsapp.base.isDarkModeEnabled
 import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
@@ -39,6 +41,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()
     }
-
-
 }
+

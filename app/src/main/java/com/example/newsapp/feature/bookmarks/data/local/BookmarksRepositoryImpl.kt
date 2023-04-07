@@ -21,4 +21,13 @@ class BookmarksRepositoryImpl(private val bookmarksLocalSource: BookmarksLocalSo
     override suspend fun delete(model: ArticleModel) {
         bookmarksLocalSource.delete(model.toEntity())
     }
+
+    override suspend fun addBookmark(article: ArticleModel) {
+        val bookmarks = bookmarksLocalSource.read().map { it.toDomain() }
+        if (bookmarks.any { it.title == article.title }) {
+            // Если статья уже находится в закладках, ничего не делаем
+            return
+        }
+        bookmarksLocalSource.create(article.toEntity())
+    }
 }

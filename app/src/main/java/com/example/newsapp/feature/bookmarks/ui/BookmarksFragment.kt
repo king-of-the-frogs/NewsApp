@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
+import com.example.newsapp.feature.domain.ArticleModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
@@ -17,7 +18,10 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
     private val adapter: BookmarksAdapter by lazy {
         BookmarksAdapter(
             onItemClick = { index ->
-
+                // Обработка клика на элемент списка
+            },
+            onBookmarkAddClick = { article ->
+                addToBookmarks(article)
             }
         )
     }
@@ -27,7 +31,7 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_bookmarks, container, false)
-        recyclerView = view.findViewById(R.id.rvBookmarksArticles) // Изменение: инициализация recyclerView
+        recyclerView = view.findViewById(R.id.rvBookmarksArticles)
         recyclerView.adapter = adapter
         return view
     }
@@ -40,5 +44,9 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
     private fun render(viewState: ViewState) {
         adapter.setData(viewState.bookmarksList)
+    }
+
+    private fun addToBookmarks(article: ArticleModel) {
+        viewModel.addBookmark(article)
     }
 }

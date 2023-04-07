@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
+import com.example.newsapp.feature.domain.ArticleModel
 import kotlinx.coroutines.launch
 
 class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
@@ -17,6 +18,11 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
         bookmarksList = emptyList(),
         bookmarksShown = emptyList(),
     )
+
+    fun addBookmark(article: ArticleModel) {
+        processDataEvent(DataEvent.AddBookmark(article))
+    }
+
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         return when (event) {
@@ -39,7 +45,20 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
                 )
             }
 
-            else -> {return null}
+            is DataEvent.AddBookmark -> {
+                // Добавление новой закладки в список закладок
+                val bookmarks = previousState.bookmarksList.toMutableList()
+                bookmarks.add(event.article)
+                return previousState.copy(
+                    bookmarksList = bookmarks,
+                    bookmarksShown = bookmarks,
+                    bookmarkAdded = !previousState.bookmarkAdded
+                )
+            }
+
+            else -> {
+                return null
+            }
         }
     }
 }

@@ -4,7 +4,10 @@
 
     <color name="colorPrimary">#04B97F</color>
     <color name="colorPrimaryDark">#005D57</color>
-    <color name="colorAccent">#37EFBA</color>
+    <color name="colorAccent">#37EFBA</color>@color/black_100
+
+    <color name="textColorPrimaryDark">@color/black_100</color>
+    <color name="textColorPrimaryLight">@color/white_100</color>
 
     <color name="background_light_night">#373741</color>
     <color name="background_medium_night">#33333D</color>
@@ -45,4 +48,5 @@
     <color name="grey_200">#F7F7F7</color>
 
     <color name="transparent">#00000000</color>
+
 </resources>
