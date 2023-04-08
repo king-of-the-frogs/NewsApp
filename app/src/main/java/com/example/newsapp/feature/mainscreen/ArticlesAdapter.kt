@@ -16,29 +16,32 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.feature.bookmarks.ui.BookmarksAdapter
 import com.example.newsapp.feature.domain.ArticleModel
+import com.example.newsapp.feature.fullnews.NewsAdapter
 import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class ArticlesAdapter(
     val onItemClicked: (Int) -> Unit,
-    private val onBookmarkClick: (ArticleModel) -> Unit
+    private val onBookmarkClick: (ArticleModel) -> Unit,
+    private val onFullClick: (ArticleModel) -> Unit,
 ) :
-    RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
+    RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     private var articlesData: List<ArticleModel> = emptyList()
 
-    class ArticleViewHolder(
+    class ViewHolder(
         itemView: View,
         private val onItemClicked: (Int) -> Unit,
-        private val onBookmarkClick: (ArticleModel) -> Unit
+        private val onBookmarkClick: (ArticleModel) -> Unit,
+        private val onFullClick: (ArticleModel) -> Unit,
     ) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvInfo)
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvAuthor)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvUrl)
         private val ivAddFav: ImageView = itemView.findViewById(R.id.ivAddFav)
-
+        private val ivFull: ImageView = itemView.findViewById(R.id.ivFull)
 
         fun bind(articlesData: ArticleModel, position: Int) {
 
@@ -69,6 +72,14 @@ class ArticlesAdapter(
                 )
             }
 
+            ivFull.setOnClickListener {
+                val context = itemView.context
+                val intent = Intent(context, NewsAdapter::class.java).apply {
+                    onFullClick.invoke(articlesData)
+                }
+                context.startActivity(intent)
+            }
+
             if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                 tvDate.setTextAppearance(R.style.Subtitle1)
                 tvAuthor.setTextAppearance(R.style.Subtitle1)
@@ -86,11 +97,11 @@ class ArticlesAdapter(
         }
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ArticleViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_article, viewGroup, false)
 
-        return ArticleViewHolder(itemView, onItemClicked, onBookmarkClick)
+        return ViewHolder(itemView, onItemClicked, onBookmarkClick, onFullClick)
     }
 
     override fun getItemCount() = articlesData.size
@@ -100,7 +111,7 @@ class ArticlesAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val articleModel = articlesData[position]
         holder.bind(articleModel, position)
     }

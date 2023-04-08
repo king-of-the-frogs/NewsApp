@@ -14,6 +14,7 @@ sealed class UiEvent : Event {
     object OnSearchButtonClicked : UiEvent()
     data class OnSearchEdit(val text : String) : UiEvent()
     data class OnBookmarkClicked(val article: ArticleModel) : UiEvent()
+    data class OnFullClick(val article: ArticleModel) : UiEvent()
 }
 
 sealed class DataEvent : Event {

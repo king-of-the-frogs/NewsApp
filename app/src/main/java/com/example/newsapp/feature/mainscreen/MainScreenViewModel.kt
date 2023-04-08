@@ -6,7 +6,10 @@ import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticlesInteractor
+import com.example.newsapp.feature.fullnews.NewsAdapter
 import kotlinx.coroutines.launch
+import java.lang.ref.Cleaner.create
+import java.net.URI.create
 
 class MainScreenViewModel(
     private val interactor: ArticlesInteractor,
@@ -25,6 +28,7 @@ class MainScreenViewModel(
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
+
             is DataEvent.LoadArticles -> {
                 viewModelScope.launch {
                     interactor.getArticles().fold(
@@ -44,9 +48,17 @@ class MainScreenViewModel(
                     articleShown = event.articles
                 )
             }
+
             is UiEvent.OnArticleClicked -> {
                 viewModelScope.launch {
                     bookmarksInteractor.create(previousState.articleShown[event.index])
+                }
+                return null
+            }
+
+            is UiEvent.OnFullClick -> {
+                viewModelScope.launch {
+                    bookmarksInteractor.create(event.article)
                 }
                 return null
             }
@@ -63,7 +75,6 @@ class MainScreenViewModel(
                     isSearchEnabled = !previousState.isSearchEnabled
                 )
             }
-
             is UiEvent.OnSearchEdit -> {
                 return previousState.copy(articleShown = previousState.articleList.filter {
                     it.title.contains(

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.core.view.isVisible
+import com.example.newsapp.MainActivity
 import com.example.newsapp.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,7 +29,10 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
             },
             onBookmarkClick = { article ->
                 viewModel.processUiEvent(UiEvent.OnBookmarkClicked(article))
-            }
+            },
+            onFullClick = { article ->
+                viewModel.processUiEvent(UiEvent.OnFullClick(article))
+            },
         )
     }
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="150dp"
+    android:layout_height="700dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="16dp"
     android:backgroundTint="#130E43"
-    android:id="@+id/bookmarkNews">
+    android:id="@+id/news">
 
 
     <ImageView
@@ -15,7 +15,7 @@
         android:src="@drawable/form"/>
 
     <TextView
-        android:id="@+id/tvBookmarksAuthor"
+        android:id="@+id/tvFullAuthor"
         android:textColor="@color/white_100"
         android:layout_margin="10dp"
         android:layout_width="wrap_content"
@@ -23,15 +23,24 @@
         android:layout_gravity="top"/>
 
     <TextView
-        android:id="@+id/tvBookmarksInfo"
+        android:id="@+id/tvFullInfo"
         android:textColor="@color/white_100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp" />
 
+    <ImageView
+        android:id="@+id/ivAddFav"
+        android:layout_margin="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_baseline_star_border_24" />
+
     <TextView
-        android:id="@+id/tvBookmarksDate"
+        android:id="@+id/tvFullDate"
         android:layout_margin="10dp"
         android:textColor="@color/white_100"
         android:layout_width="wrap_content"
@@ -39,7 +48,7 @@
         android:layout_gravity="bottom" />
 
     <TextView
-        android:id="@+id/tvBookmarksUrl"
+        android:id="@+id/tvFullUrl"
         android:textColor="@color/white_100"
         android:text="@string/origUrl"
         android:layout_margin="10dp"
@@ -49,13 +58,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"/>
 
-    <ImageView
-        android:id="@+id/ivDelFav"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginEnd="8dp"
-        android:src="@drawable/ic_baseline_star_24" />
 
 </androidx.cardview.widget.CardView>
