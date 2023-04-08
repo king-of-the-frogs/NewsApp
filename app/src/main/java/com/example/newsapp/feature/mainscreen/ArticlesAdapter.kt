@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
+import com.example.newsapp.feature.bookmarks.ui.BookmarksAdapter
 import com.example.newsapp.feature.domain.ArticleModel
 import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
@@ -22,82 +23,85 @@ import java.time.format.DateTimeFormatter
 class ArticlesAdapter(
     val onItemClicked: (Int) -> Unit,
     private val onBookmarkClick: (ArticleModel) -> Unit
-) : RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
+) :
+    RecyclerView.Adapter<ArticlesAdapter.ArticleViewHolder>() {
 
     private var articlesData: List<ArticleModel> = emptyList()
 
+    class ArticleViewHolder(
+        itemView: View,
+        private val onItemClicked: (Int) -> Unit,
+        private val onBookmarkClick: (ArticleModel) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
+        private val tvTitle: TextView = itemView.findViewById(R.id.tvInfo)
+        private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
+        private val tvAuthor: TextView = itemView.findViewById(R.id.tvAuthor)
+        private val tvUrl: TextView = itemView.findViewById(R.id.tvUrl)
+        private val ivAddFav: ImageView = itemView.findViewById(R.id.ivAddFav)
 
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder)
-     */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvTitle: TextView = view.findViewById(R.id.tvTitle)
-        val tvDate: TextView = view.findViewById(R.id.tvDate)
-        val tvAuthor: TextView = view.findViewById(R.id.tvAuthor)
-        val tvUrl: TextView = view.findViewById(R.id.tvUrl)
-        val ivAddFav: Button = view.findViewById(R.id.ivAddFav)
+        fun bind(articlesData: ArticleModel, position: Int) {
 
+            val formatter = DateTimeFormatter.ofPattern(
+                "yyyy-MM-dd'  'HH:mm:ss"
+            )
+            val parsedDate = LocalDateTime.parse(
+                articlesData.publishedAt,
+                DateTimeFormatter.ISO_DATE_TIME
+            )
+            val formattedDate = parsedDate.format(formatter)
+
+
+            tvDate.text = formattedDate
+            tvAuthor.text = articlesData.author
+            tvTitle.text = articlesData.title
+
+            tvUrl.setOnClickListener {
+                val linkUrl = articlesData.url
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
+                val context = itemView.context
+                context.startActivity(intent)
+            }
+
+            ivAddFav.setOnClickListener {
+                onBookmarkClick.invoke(
+                    articlesData
+                )
+            }
+
+            if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+                tvDate.setTextAppearance(R.style.Subtitle1)
+                tvAuthor.setTextAppearance(R.style.Subtitle1)
+                tvTitle.setTextAppearance(R.style.Subtitle1)
+                tvUrl.setTextAppearance(R.style.Subtitle1)
+                ivAddFav.setColorFilter(ContextCompat.getColor(
+                        itemView.context, R.color.black_100
+                    )
+                )
+            }
+
+            itemView.setOnClickListener {
+                onItemClicked(position)
+            }
+        }
     }
 
-    // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ArticleViewHolder {
+        val itemView = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.item_article, viewGroup, false)
 
-        return ViewHolder(view)
+        return ArticleViewHolder(itemView, onItemClicked, onBookmarkClick)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-
-        val formatter = DateTimeFormatter.ofPattern(
-            "yyyy-MM-dd'  'HH:mm:ss"
-        )
-        val parsedDate = LocalDateTime.parse(
-            articlesData[position].publishedAt,
-            DateTimeFormatter.ISO_DATE_TIME
-        )
-        val formattedDate = parsedDate.format(formatter)
-
-
-        viewHolder.tvDate.text = formattedDate
-        viewHolder.tvAuthor.text = articlesData[position].author
-        viewHolder.tvTitle.text = articlesData[position].title
-
-        if (viewHolder.tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-            viewHolder.tvDate.setTextAppearance(R.style.Subtitle1)
-            viewHolder.tvAuthor.setTextAppearance(R.style.Subtitle1)
-            viewHolder.tvTitle.setTextAppearance(R.style.Subtitle1)
-            viewHolder.tvUrl.setTextAppearance(R.style.Subtitle1)
-                //           viewHolder.ivAddFav.setColorFilter(ContextCompat.getColor(viewHolder.itemView.context, R.color.black_100))
-        }
-
-        viewHolder.itemView.setOnClickListener {
-            onItemClicked(position)
-        }
-
-        viewHolder.tvUrl.setOnClickListener {
-            val linkUrl = articlesData[position].url
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
-            val context = viewHolder.itemView.context
-            context.startActivity(intent)
-        }
-
-        viewHolder.ivAddFav.setOnClickListener {
-            onBookmarkClick.invoke(
-                articlesData[position]
-            )
-        }
-
-    }
-
-    // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = articlesData.size
 
     fun setData(articles: List<ArticleModel>) {
         articlesData = articles
         notifyDataSetChanged()
+    }
+
+    override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
+        val articleModel = articlesData[position]
+        holder.bind(articleModel, position)
     }
 }

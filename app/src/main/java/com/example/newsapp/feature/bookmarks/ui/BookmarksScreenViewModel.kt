@@ -23,6 +23,10 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
         processDataEvent(DataEvent.AddBookmark(article))
     }
 
+    fun deleteBookmark(article: ArticleModel) {
+        processDataEvent(DataEvent.DelBookmark(article))
+    }
+
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         return when (event) {
@@ -49,6 +53,16 @@ class BookmarksScreenViewModel(private val interactor: BookmarksInteractor) :
                 // Добавление новой закладки в список закладок
                 val bookmarks = previousState.bookmarksList.toMutableList()
                 bookmarks.add(event.article)
+                return previousState.copy(
+                    bookmarksList = bookmarks,
+                    bookmarksShown = bookmarks,
+                    bookmarkAdded = !previousState.bookmarkAdded
+                )
+            }
+
+            is DataEvent.DelBookmark -> {
+                val bookmarks = previousState.bookmarksList.toMutableList()
+                bookmarks.remove(event.article)
                 return previousState.copy(
                     bookmarksList = bookmarks,
                     bookmarksShown = bookmarks,

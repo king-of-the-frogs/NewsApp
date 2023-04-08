@@ -17,14 +17,18 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
     private val adapter: BookmarksAdapter by lazy {
         BookmarksAdapter(
-            onItemClick = { index ->
-                // Обработка клика на элемент списка
+            onItemClick = {
+
             },
             onBookmarkAddClick = { article ->
                 addToBookmarks(article)
+            },
+            onBookmarkDeleteClick = { article ->
+                deleteFromBookmarks(article)
             }
         )
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,4 +53,11 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
     private fun addToBookmarks(article: ArticleModel) {
         viewModel.addBookmark(article)
     }
+
+    private fun deleteFromBookmarks(article: ArticleModel) {
+        viewModel.deleteBookmark(article)
+        adapter.setData(viewModel.viewState.value?.bookmarksList ?: emptyList())
+        viewModel.deleteBookmark(article)
+    }
+
 }

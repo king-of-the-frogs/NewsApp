@@ -15,4 +15,5 @@ sealed class DataEvent() : Event {
     object LoadBookmarks : DataEvent()
     data class OnSuccessBookmarksLoaded(val bookmarks: List<ArticleModel>) : DataEvent()
     data class AddBookmark(val article: ArticleModel) : DataEvent()
+    data class DelBookmark(val article: ArticleModel) : DataEvent()
 }

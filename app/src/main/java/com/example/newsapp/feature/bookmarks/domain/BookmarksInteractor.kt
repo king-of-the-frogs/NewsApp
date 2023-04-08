@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class BookmarksInteractor(private val bookmarksRepository: BookmarksRepository) {
+
     suspend fun create(model: ArticleModel) {
         attempt { bookmarksRepository.create(model) }
     }
@@ -22,10 +23,5 @@ class BookmarksInteractor(private val bookmarksRepository: BookmarksRepository) 
 
     suspend fun delete(model: ArticleModel) {
         attempt { bookmarksRepository.delete(model) }
-    }
-    suspend fun addBookmark(article: ArticleModel) {
-        withContext(Dispatchers.IO) {
-            bookmarksRepository.addBookmark(article)
-        }
     }
 }
