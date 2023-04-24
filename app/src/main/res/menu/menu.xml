@@ -8,5 +8,4 @@
     <item android:id="@+id/itemBookmarks"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/favorite"/>
-
 </menu>

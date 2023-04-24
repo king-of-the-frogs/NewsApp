@@ -2,27 +2,24 @@ package com.example.newsapp
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.newsapp.base.isDarkModeEnabled
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
 import com.example.newsapp.feature.domain.ArticleModel
+import com.example.newsapp.feature.fullpage.FullPageAdapter
 import com.example.newsapp.feature.mainscreen.MainScreenFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
-class MainActivity : AppCompatActivity() {
+class FullPageActivity : AppCompatActivity() {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_full_page)
 
         bottomNavigationMenu.setOnItemSelectedListener {
             when (it.itemId) {
@@ -44,5 +41,11 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    companion object {
+        fun newIntent(context: Context, articleModel: ArticleModel): Intent {
+            val intent = Intent(context, FullPageActivity::class.java)
+            intent.putExtra("articleModel", articleModel)
+            return intent
+        }
+    }
 }
-

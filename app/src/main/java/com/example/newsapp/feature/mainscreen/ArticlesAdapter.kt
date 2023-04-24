@@ -1,5 +1,6 @@
 package com.example.newsapp.feature.mainscreen
 
+import android.content.ClipData.newIntent
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -13,6 +14,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newsapp.FullPageActivity
 import com.example.newsapp.R
 import com.example.newsapp.feature.bookmarks.ui.BookmarksAdapter
 import com.example.newsapp.feature.domain.ArticleModel
@@ -72,13 +74,10 @@ class ArticlesAdapter(
                 )
             }
 
-//            ivFull.setOnClickListener {
-//                val context = itemView.context
-//                val intent = Intent(context, NewsAdapter::class.java).apply {
-//                    onFullClick.invoke(articlesData)
-//                }
-//                context.startActivity(intent)
-//            }
+            ivFull.setOnClickListener {
+                val intent = FullPageActivity.newIntent(itemView.context, articlesData)
+                itemView.context.startActivity(intent)
+            }
 
             if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                 tvDate.setTextAppearance(R.style.Subtitle1)
