@@ -20,9 +20,6 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
             onItemClick = {
 
             },
-            onBookmarkAddClick = { article ->
-                addToBookmarks(article)
-            },
             onBookmarkDeleteClick = { article ->
                 deleteFromBookmarks(article)
             }
@@ -48,10 +45,6 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
 
     private fun render(viewState: ViewState) {
         adapter.setData(viewState.bookmarksList)
-    }
-
-    private fun addToBookmarks(article: ArticleModel) {
-        viewModel.addBookmark(article)
     }
 
     private fun deleteFromBookmarks(article: ArticleModel) {

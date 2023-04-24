@@ -18,4 +18,6 @@ interface BookmarksDao {
 
     @Delete
     suspend fun delete(entity: BookmarkEntity)
+    @Query("DELETE FROM $BOOKMARKS_TABLE WHERE url=:url")
+    suspend fun deleteBookmark(url: String)
 }

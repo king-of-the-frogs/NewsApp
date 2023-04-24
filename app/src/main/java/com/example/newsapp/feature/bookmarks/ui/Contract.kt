@@ -1,12 +1,14 @@
 package com.example.newsapp.feature.bookmarks.ui
 
+import androidx.room.Delete
 import com.example.newsapp.base.Event
 import com.example.newsapp.feature.domain.ArticleModel
 
 data class ViewState(
     val bookmarksShown: List<ArticleModel>,
     val bookmarksList: List<ArticleModel>,
-    val bookmarkAdded: Boolean = false
+    val bookmarkAdded: Boolean = false,
+
 )
 sealed class UiEvent()
     data class OnBookmarkAdded(val article: ArticleModel) : UiEvent()

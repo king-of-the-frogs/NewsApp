@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.feature.bookmarks.ui.BookmarksAdapter
 import com.example.newsapp.feature.domain.ArticleModel
-import com.example.newsapp.feature.fullnews.NewsAdapter
+
 import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -72,13 +72,13 @@ class ArticlesAdapter(
                 )
             }
 
-            ivFull.setOnClickListener {
-                val context = itemView.context
-                val intent = Intent(context, NewsAdapter::class.java).apply {
-                    onFullClick.invoke(articlesData)
-                }
-                context.startActivity(intent)
-            }
+//            ivFull.setOnClickListener {
+//                val context = itemView.context
+//                val intent = Intent(context, NewsAdapter::class.java).apply {
+//                    onFullClick.invoke(articlesData)
+//                }
+//                context.startActivity(intent)
+//            }
 
             if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                 tvDate.setTextAppearance(R.style.Subtitle1)

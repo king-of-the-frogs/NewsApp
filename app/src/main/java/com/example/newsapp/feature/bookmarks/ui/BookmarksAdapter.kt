@@ -19,17 +19,16 @@ import java.time.format.DateTimeFormatter
 
 class BookmarksAdapter(
     private val onItemClick: (ArticleModel) -> Unit,
-    private val onBookmarkAddClick: (ArticleModel) -> Unit,
     private val onBookmarkDeleteClick: (ArticleModel) -> Unit
 ) :
     RecyclerView.Adapter<BookmarksAdapter.ViewHolder>() {
 
     private val bookmarksList = mutableListOf<ArticleModel>()
+    private val bookmarksShown = mutableListOf<ArticleModel>()
 
     class ViewHolder(
         itemView: View,
         private val onItemClick: (ArticleModel) -> Unit,
-        private val onBookmarkAddClick: (ArticleModel) -> Unit,
         private val onBookmarkDeleteClick: (ArticleModel) -> Unit
     ) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvBookmarksInfo)
@@ -87,7 +86,7 @@ class BookmarksAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_bookmark_article, parent, false)
-        return ViewHolder(itemView, onItemClick, onBookmarkAddClick, onBookmarkDeleteClick)
+        return ViewHolder(itemView, onItemClick, onBookmarkDeleteClick)
     }
 
     override fun getItemCount() = bookmarksList.size
@@ -95,6 +94,8 @@ class BookmarksAdapter(
     fun setData(bookmarks: List<ArticleModel>) {
         bookmarksList.clear()
         bookmarksList.addAll(bookmarks)
+        bookmarksShown.clear()
+        bookmarksShown.addAll(bookmarks)
         notifyDataSetChanged()
     }
 

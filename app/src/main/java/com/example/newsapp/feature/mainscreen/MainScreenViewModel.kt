@@ -6,7 +6,6 @@ import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticlesInteractor
-import com.example.newsapp.feature.fullnews.NewsAdapter
 import kotlinx.coroutines.launch
 import java.lang.ref.Cleaner.create
 import java.net.URI.create
