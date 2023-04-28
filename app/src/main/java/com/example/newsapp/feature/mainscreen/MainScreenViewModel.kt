@@ -53,13 +53,6 @@ class MainScreenViewModel(
                 )
             }
 
-            is UiEvent.OnArticleClicked -> {
-                viewModelScope.launch {
-                    bookmarksInteractor.create(previousState.articleShown[event.index])
-                }
-                return null
-            }
-
             is UiEvent.OnFullClick -> {
                 viewModelScope.launch {
                     fullPageInteractor.create(event.article)

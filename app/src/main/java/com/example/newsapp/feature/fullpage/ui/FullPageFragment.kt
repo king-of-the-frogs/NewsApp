@@ -21,8 +21,6 @@ class FullPageFragment : Fragment(R.layout.fragment_full) {
 
     private val adapter: FullPageAdapter by lazy {
         FullPageAdapter(
-            onItemClick = {
-            },
             onBookmarkClick = { article ->
                 viewModel.processUiEvent(UiEvent.OnBookmarkClicked(article))
             }

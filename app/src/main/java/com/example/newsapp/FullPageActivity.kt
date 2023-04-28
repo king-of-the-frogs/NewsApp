@@ -20,8 +20,8 @@ class FullPageActivity : AppCompatActivity() {
         selectTab(FullPageFragment())
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
+    override fun onDestroy() {
+        super.onDestroy()
         GlobalScope.launch {
             appDatabase.fullPageDao().nukeTable()
         }

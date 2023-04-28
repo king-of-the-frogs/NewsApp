@@ -18,7 +18,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class FullPageAdapter(
-    private val onItemClick: (ArticleModel) -> Unit,
     private val onBookmarkClick: (ArticleModel) -> Unit,
 ) :
     RecyclerView.Adapter<FullPageAdapter.ViewHolder>() {
@@ -27,16 +26,16 @@ class FullPageAdapter(
 
     class ViewHolder(
         itemView: View,
-        private val onItemClick: (ArticleModel) -> Unit,
         private val onBookmarkClick: (ArticleModel) -> Unit,
     ) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvFullTitle)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvFullAuthor)
         private val tvDate: TextView = itemView.findViewById(R.id.tvFullDate)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvFullUrl)
+        private val tvUrlToImage: TextView = itemView.findViewById(R.id.tvFullUrlToImage)
         private val tvContent: TextView = itemView.findViewById(R.id.tvFullContent)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvFullDescription)
-        private val ivAddFav: ImageView = itemView.findViewById(R.id.ivFullAddFav)
+//        private val ivAddFav: ImageView = itemView.findViewById(R.id.ivFullAddFav)
 
         fun bind(fullPageData: ArticleModel) {
 
@@ -44,19 +43,20 @@ class FullPageAdapter(
                 "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
-                fullPageData.publishedAt,
+                fullPageData.pubDate,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
 
             tvDate.text = formattedDate
             tvTitle.text = fullPageData.title
-            tvAuthor.text = fullPageData.author
+            tvAuthor.text = fullPageData.creator
             tvDescription.text = fullPageData.description
             tvContent.text = fullPageData.content
+            tvUrlToImage.text = fullPageData.image_url
 
             tvUrl.setOnClickListener {
-                val linkUrl = fullPageData.url
+                val linkUrl = fullPageData.link
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 val context = itemView.context
                 context.startActivity(intent)
@@ -104,7 +104,6 @@ class FullPageAdapter(
 
         return ViewHolder(
             itemView,
-            onItemClick,
             onBookmarkClick,
         )
     }

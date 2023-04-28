@@ -11,11 +11,9 @@ data class ViewState(
 )
 
 sealed class UiEvent : Event {
-    data class OnArticleClicked(val index: Int) : UiEvent()
     object OnSearchButtonClicked : UiEvent()
     data class OnSearchEdit(val text : String) : UiEvent()
     data class OnBookmarkClicked(val article: ArticleModel) : UiEvent()
-    data class OnDelClick(val article: ArticleModel) : UiEvent()
     data class OnFullClick(val article: ArticleModel) : UiEvent()
 }
 

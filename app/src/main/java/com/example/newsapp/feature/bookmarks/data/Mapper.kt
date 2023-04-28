@@ -5,20 +5,20 @@ import com.example.newsapp.feature.domain.ArticleModel
 
 fun BookmarkEntity.toDomain() = ArticleModel(
     title = title,
-    url = url,
-    author = author,
-    publishedAt = publishedAt,
-    urlToImage = urlToImage,
+    link = link,
+    creator = creator,
+    pubDate = pubDate,
+    image_url = image_url,
     description = description,
     content = content,
 )
 
 fun ArticleModel.toEntity() = BookmarkEntity(
     title = title,
-    url = url,
-    author = author,
-    publishedAt = publishedAt,
-    urlToImage = urlToImage,
+    link = link,
+    creator = creator,
+    pubDate = pubDate,
+    image_url = image_url,
     description = description,
     content = content,
 )

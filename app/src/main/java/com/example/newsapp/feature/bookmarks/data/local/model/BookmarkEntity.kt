@@ -9,15 +9,15 @@ import com.example.newsapp.feature.bookmarks.di.BOOKMARKS_TABLE
 data class BookmarkEntity(
     @PrimaryKey
     @ColumnInfo(name = "url")
-    val url: String,
+    val link: String,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "author")
-    val author: String,
+    val creator: String?,
     @ColumnInfo(name = "publishedAt")
-    val publishedAt: String,
+    val pubDate: String,
     @ColumnInfo(name = "urlToImage")
-    val urlToImage: String?,
+    val image_url: String?,
     @ColumnInfo(name = "description")
     val description: String?,
     @ColumnInfo(name = "content")

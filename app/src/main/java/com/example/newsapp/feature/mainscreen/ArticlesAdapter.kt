@@ -17,7 +17,6 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class ArticlesAdapter(
-    val onItemClicked: (Int) -> Unit,
     private val onBookmarkClick: (ArticleModel) -> Unit,
     private val onFullClick: (ArticleModel) -> Unit,
 
@@ -28,16 +27,19 @@ class ArticlesAdapter(
 
     class ViewHolder(
         itemView: View,
-        private val onItemClicked: (Int) -> Unit,
         private val onBookmarkClick: (ArticleModel) -> Unit,
         private val onFullClick: (ArticleModel) -> Unit,
     ) : RecyclerView.ViewHolder(itemView) {
-        private val tvTitle: TextView = itemView.findViewById(R.id.tvInfo)
+        private val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvAuthor)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvUrl)
+        private val tvUrlToImage: TextView = itemView.findViewById(R.id.tvUrlToImage)
+        private val tvContent: TextView = itemView.findViewById(R.id.tvContent)
+        private val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         private val ivAddFav: ImageView = itemView.findViewById(R.id.ivAddFav)
         private val ivFull: ImageView = itemView.findViewById(R.id.ivFull)
+
 
         fun bind(articlesData: ArticleModel, position: Int) {
 
@@ -45,17 +47,17 @@ class ArticlesAdapter(
                 "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
-                articlesData.publishedAt,
+                articlesData.pubDate,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
 
             tvDate.text = formattedDate
-            tvAuthor.text = articlesData.author
+            tvAuthor.text = articlesData.creator
             tvTitle.text = articlesData.title
 
             tvUrl.setOnClickListener {
-                val linkUrl = articlesData.url
+                val linkUrl = articlesData.link
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 val context = itemView.context
                 context.startActivity(intent)
@@ -81,10 +83,6 @@ class ArticlesAdapter(
                 onFullClick.invoke(
                     articlesData
                 )
-            }
-
-            itemView.setOnClickListener {
-                onItemClicked(position)
             }
 
             if (tvTitle.context.resources.configuration.uiMode and
@@ -121,7 +119,6 @@ class ArticlesAdapter(
 
         return ViewHolder(
             itemView,
-            onItemClicked,
             onBookmarkClick,
             onFullClick,
         )

@@ -20,14 +20,11 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
     private val viewModel: MainScreenViewModel by viewModel()
     private val recyclerView: RecyclerView by lazy { requireActivity().findViewById(R.id.rvArticles) }
     private val ivSearch: View by lazy { requireActivity().findViewById(R.id.ivSearch) }
-    private val tvTitle: TextView by lazy { requireActivity().findViewById(R.id.tvTitle) }
+    private val tvTop: TextView by lazy { requireActivity().findViewById(R.id.tvTop) }
     private val etSearch: EditText by lazy { requireActivity().findViewById(R.id.etSearch) }
 
     private val adapter: ArticlesAdapter by lazy {
         ArticlesAdapter(
-            onItemClicked = { index ->
-                viewModel.processUiEvent(UiEvent.OnArticleClicked(index))
-            },
             onBookmarkClick = { article ->
                 viewModel.processUiEvent(UiEvent.OnBookmarkClicked(article))
             },
@@ -63,7 +60,7 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun render(viewState: ViewState) {
-        tvTitle.isVisible = !viewState.isSearchEnabled
+        tvTop.isVisible = !viewState.isSearchEnabled
         etSearch.isVisible = viewState.isSearchEnabled
         adapter.setData(viewState.articleShown)
     }

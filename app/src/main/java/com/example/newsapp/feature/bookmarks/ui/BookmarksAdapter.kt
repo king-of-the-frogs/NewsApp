@@ -47,17 +47,17 @@ class BookmarksAdapter(
                 "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
-                bookmarkData.publishedAt,
+                bookmarkData.pubDate,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
 
             tvDate.text = formattedDate
             tvTitle.text = bookmarkData.title
-            tvAuthor.text = bookmarkData.author
+            tvAuthor.text = bookmarkData.creator
 
             tvUrl.setOnClickListener {
-                val linkUrl = bookmarkData.url
+                val linkUrl = bookmarkData.link
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 val context = itemView.context
                 context.startActivity(intent)

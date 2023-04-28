@@ -11,9 +11,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-private const val BASE_URL = "https://newsapi.org/"
+private const val BASE_URL = "https://newsdata.io/"
 
-const val API_KEY = "96089324eb6d4eef80cf2bb453738a51"
+const val API_KEY = "pub_213419091a953b0b5bbe8e880ca979f881055"
 const val APP_DATABASE = "APP_DATABASE"
 const val APP_DATABASE_FULL_PAGE = "APP_DATABASE_FULL_PAGE"
 

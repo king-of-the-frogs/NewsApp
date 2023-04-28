@@ -33,11 +33,11 @@ class BookmarksScreenViewModel(
     private fun ArticleModel.toBookmarkEntity(): BookmarkEntity {
         return BookmarkEntity(
             title = this.title,
-            url = this.url,
-            author = this.author,
-            publishedAt = this.publishedAt,
+            link = this.link,
+            creator = this.creator,
+            pubDate = this.pubDate,
             description = this.description,
-            urlToImage = this.urlToImage,
+            image_url = this.image_url,
             content = this.content
         )
     }
