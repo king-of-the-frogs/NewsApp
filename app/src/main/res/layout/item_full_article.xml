@@ -1,78 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="16dp"
-    android:backgroundTint="#130E43"
-    android:id="@+id/fullPageNews">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/tvFullUrlToImage"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/form_full"
+                app:layout_collapseMode="parallax"/>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="1dp"
-        android:src="@drawable/form"/>
+        android:background="@drawable/gradient_bg"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/tvFullAuthor"
-        android:textColor="@color/white_100"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"/>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fullPageNews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="#130E43"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="8dp"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-        android:id="@+id/tvFullTitle"
-        android:textColor="@color/white_100"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/form_full"
+                app:layout_collapseMode="parallax"/>
 
-    <TextView
-        android:id="@+id/tvFullDate"
-        android:layout_margin="10dp"
-        android:textColor="@color/white_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
+            <TextView
+                android:id="@+id/tvFullAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_margin="10dp"
+                android:textColor="@color/white_100"
+                android:text="Author"/>
 
-    <TextView
-        android:id="@+id/tvFullDescription"
-        android:layout_margin="10dp"
-        android:textColor="@color/white_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="clip_horizontal"/>
+            <TextView
+                android:id="@+id/tvFullDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="30dp"
+                android:textColor="@color/white_100"
+                android:text="Description"/>
 
-    <TextView
-        android:id="@+id/tvFullContent"
-        android:layout_margin="10dp"
-        android:textColor="@color/white_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/tvFullContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="130dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="50dp"
+                android:textColor="@color/white_100"
+                android:text="Content"/>
 
-    <TextView
-        android:id="@+id/tvFullUrl"
-        android:textColor="@color/white_100"
-        android:text="@string/origUrl"
-        android:layout_margin="10dp"
-        android:autoLink="web"
-        android:linksClickable="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"/>
+            <TextView
+                android:id="@+id/tvFullDate"
+                android:layout_margin="10dp"
+                android:textColor="@color/white_100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Date"/>
 
-    <TextView
-        android:id="@+id/tvFullUrlToImage"
-        android:textColor="@color/white_100"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"/>
+            <TextView
+                android:id="@+id/tvFullUrl"
+                android:textColor="@color/white_100"
+                android:text="@string/origUrl"
+                android:layout_margin="10dp"
+                android:autoLink="web"
+                android:linksClickable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"/>
 
-
-
-</androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </androidx.core.widget.NestedScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

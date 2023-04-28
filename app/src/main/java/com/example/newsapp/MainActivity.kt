@@ -36,13 +36,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        GlobalScope.launch {
-            appDatabase.fullPageDao().nukeTable()
-        }
-    }
-
     private fun selectTab(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()

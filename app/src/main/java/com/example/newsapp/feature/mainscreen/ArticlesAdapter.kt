@@ -34,9 +34,6 @@ class ArticlesAdapter(
         private val tvDate: TextView = itemView.findViewById(R.id.tvDate)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvAuthor)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvUrl)
-        private val tvUrlToImage: TextView = itemView.findViewById(R.id.tvUrlToImage)
-        private val tvContent: TextView = itemView.findViewById(R.id.tvContent)
-        private val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
         private val ivAddFav: ImageView = itemView.findViewById(R.id.ivAddFav)
         private val ivFull: ImageView = itemView.findViewById(R.id.ivFull)
 
@@ -47,17 +44,17 @@ class ArticlesAdapter(
                 "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
-                articlesData.pubDate,
+                articlesData.publishedAt,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
 
             tvDate.text = formattedDate
-            tvAuthor.text = articlesData.creator
+            tvAuthor.text = articlesData.author
             tvTitle.text = articlesData.title
 
             tvUrl.setOnClickListener {
-                val linkUrl = articlesData.link
+                val linkUrl = articlesData.url
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 val context = itemView.context
                 context.startActivity(intent)

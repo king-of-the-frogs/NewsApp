@@ -1,11 +1,11 @@
 package com.example.newsapp.feature.domain
 
 data class ArticleModel(
-    val creator: String?,
+    val author: String?,
     val title: String,
-    val link: String,
-    val image_url: String?,
+    val url: String,
+    val urlToImage: String?,
     val description: String?,
     val content: String?,
-    val pubDate: String
+    val publishedAt: String
 )

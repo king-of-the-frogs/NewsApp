@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">NewsApp</string>
-    <string name="main">Главная</string>
-    <string name="favorite">Избранное</string>
-    <string name="origUrl">Перейти к источнику</string>
+    <string name="main">Home</string>
+    <string name="favorite">Favorites</string>
+    <string name="origUrl">Go to the source</string>
 </resources>

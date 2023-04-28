@@ -24,8 +24,8 @@ class App : Application() {
                 networkModule,
                 mainScreenModule,
                 bookmarksModule,
-                database1Module,
                 fullPageModule,
+                database1Module,
                 database2Module
             )
         }

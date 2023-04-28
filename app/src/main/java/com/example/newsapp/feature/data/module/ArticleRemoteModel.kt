@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class ArticleRemoteModel(
     @SerializedName("author")
-    val creator: String?,
+    val author: String?,
     @SerializedName("title")
     val title: String,
     @SerializedName("url")
-    val link: String,
+    val url: String,
     @SerializedName("urlToImage")
-    val image_url: String?,
+    val urlToImage: String?,
     @SerializedName("description")
     val description: String?,
     @SerializedName("content")
     val content: String?,
     @SerializedName("publishedAt")
-    val pubDate: String
+    val publishedAt: String
 )

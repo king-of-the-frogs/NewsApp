@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.feature.domain.ArticleModel
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.time.LocalDateTime
@@ -28,11 +29,10 @@ class FullPageAdapter(
         itemView: View,
         private val onBookmarkClick: (ArticleModel) -> Unit,
     ) : RecyclerView.ViewHolder(itemView) {
-        private val tvTitle: TextView = itemView.findViewById(R.id.tvFullTitle)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvFullAuthor)
         private val tvDate: TextView = itemView.findViewById(R.id.tvFullDate)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvFullUrl)
-        private val tvUrlToImage: TextView = itemView.findViewById(R.id.tvFullUrlToImage)
+        private val tvUrlToImage: ImageView = itemView.findViewById(R.id.tvFullUrlToImage)
         private val tvContent: TextView = itemView.findViewById(R.id.tvFullContent)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvFullDescription)
 //        private val ivAddFav: ImageView = itemView.findViewById(R.id.ivFullAddFav)
@@ -43,20 +43,24 @@ class FullPageAdapter(
                 "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
-                fullPageData.pubDate,
+                fullPageData.publishedAt,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
+            val url = fullPageData.urlToImage
 
             tvDate.text = formattedDate
-            tvTitle.text = fullPageData.title
-            tvAuthor.text = fullPageData.creator
+            if (url != null && !url.isEmpty()) {
+                Picasso.get().load(url).into(tvUrlToImage);
+            } else {
+                tvUrlToImage.setImageResource(R.drawable.ic_baseline_menu_book_24);
+            }
+            tvAuthor.text = fullPageData.author
             tvDescription.text = fullPageData.description
             tvContent.text = fullPageData.content
-            tvUrlToImage.text = fullPageData.image_url
 
             tvUrl.setOnClickListener {
-                val linkUrl = fullPageData.link
+                val linkUrl = fullPageData.url
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(linkUrl))
                 val context = itemView.context
                 context.startActivity(intent)
@@ -80,10 +84,9 @@ class FullPageAdapter(
 //          }
 
 
-            if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+            if (tvDate.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
                 tvDate.setTextAppearance(R.style.Subtitle1)
                 tvAuthor.setTextAppearance(R.style.Subtitle1)
-                tvTitle.setTextAppearance(R.style.Subtitle1)
                 tvUrl.setTextAppearance(R.style.Subtitle1)
             }
         }

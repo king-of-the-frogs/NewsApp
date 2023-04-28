@@ -9,15 +9,15 @@ import com.example.newsapp.feature.fullpage.di.FULL_PAGE_TABLE
 data class FullPageEntity(
     @PrimaryKey
     @ColumnInfo(name = "url")
-    val link: String,
+    val url: String,
     @ColumnInfo(name = "title")
     val title: String,
     @ColumnInfo(name = "author")
-    val creator: String?,
+    val author: String?,
     @ColumnInfo(name = "publishedAt")
-    val pubDate: String,
+    val publishedAt: String,
     @ColumnInfo(name = "urlToImage")
-    val image_url: String?,
+    val urlToImage: String?,
     @ColumnInfo(name = "description")
     val description: String?,
     @ColumnInfo(name = "content")
