@@ -47,6 +47,8 @@
     <color name="grey_300">#F4F5F6</color>
     <color name="grey_200">#F7F7F7</color>
 
+    <color name="blue_200">#2F0CAC</color>
+
     <color name="transparent">#00000000</color>
 
 </resources>

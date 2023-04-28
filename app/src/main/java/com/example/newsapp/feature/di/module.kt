@@ -28,6 +28,6 @@ val mainScreenModule = module {
     }
 
     viewModel {
-        MainScreenViewModel(interactor = get(), bookmarksInteractor = get())
+        MainScreenViewModel(interactor = get(), bookmarksInteractor = get(), fullPageInteractor = get())
     }
 }

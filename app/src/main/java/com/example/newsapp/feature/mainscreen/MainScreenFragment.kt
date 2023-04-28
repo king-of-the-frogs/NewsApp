@@ -1,6 +1,7 @@
 package com.example.newsapp.feature.mainscreen
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,7 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.core.view.isVisible
-import com.example.newsapp.MainActivity
+import com.example.newsapp.FullPageActivity
 import com.example.newsapp.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -31,7 +32,9 @@ class MainScreenFragment : Fragment(R.layout.fragment_main) {
                 viewModel.processUiEvent(UiEvent.OnBookmarkClicked(article))
             },
             onFullClick = { article ->
-                viewModel.processUiEvent(UiEvent.OnFullClick(article))
+                viewModel.processUiEvent(UiEvent.OnFullClick(article)).also {
+                    requireContext().startActivity(Intent(requireContext(), FullPageActivity::class.java))
+                }
             },
         )
     }

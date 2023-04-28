@@ -4,5 +4,8 @@ data class ArticleModel(
     val author: String,
     val title: String,
     val url: String,
-    val publishedAt: String,
+    val urlToImage: String?,
+    val description: String?,
+    val content: String?,
+    val publishedAt: String
 )

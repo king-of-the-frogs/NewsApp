@@ -1,6 +1,7 @@
 package com.example.newsapp.feature.bookmarks.data.local
 
 import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
+import com.example.newsapp.feature.bookmarks.data.local.model.BookmarksDao
 
 class BookmarksLocalSource(private val bookmarksDao: BookmarksDao) {
 

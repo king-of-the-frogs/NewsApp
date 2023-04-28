@@ -9,6 +9,12 @@ data class ArticleRemoteModel(
     val title: String,
     @SerializedName("url")
     val url: String,
+    @SerializedName("urlToImage")
+    val urlToImage: String?,
+    @SerializedName("description")
+    val description: String?,
+    @SerializedName("content")
+    val content: String?,
     @SerializedName("publishedAt")
     val publishedAt: String
 )

@@ -1,17 +1,9 @@
 package com.example.newsapp
 
-import android.content.Context
-import android.content.Intent
-import android.content.res.Resources
-import android.content.res.Resources.Theme
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.newsapp.base.isDarkModeEnabled
 import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
-import com.example.newsapp.feature.domain.ArticleModel
 import com.example.newsapp.feature.mainscreen.MainScreenFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -37,12 +29,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
         bottomNavigationMenu.selectedItemId = R.id.itemMain
+
+
     }
 
     private fun selectTab(fragment: Fragment) {
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment)
             .commit()
     }
-
 }
 

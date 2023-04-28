@@ -1,8 +1,10 @@
 package com.example.newsapp.di
 
 import androidx.room.Room
+import com.example.newsapp.AppDataBaseFullPage
 import com.example.newsapp.AppDatabase
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -13,6 +15,7 @@ private const val BASE_URL = "https://newsapi.org/"
 
 const val API_KEY = "96089324eb6d4eef80cf2bb453738a51"
 const val APP_DATABASE = "APP_DATABASE"
+const val APP_DATABASE_FULL_PAGE = "APP_DATABASE_FULL_PAGE"
 
 val networkModule = module {
 
@@ -33,7 +36,7 @@ val networkModule = module {
     }
 }
 
-val databaseModule = module {
+val database1Module = module {
     single {
         Room
             .databaseBuilder(androidContext(), AppDatabase::class.java, APP_DATABASE)
@@ -42,5 +45,16 @@ val databaseModule = module {
     }
     single {
         get<AppDatabase>().bookmarksDao()
+    }
+}
+val database2Module = module {
+
+    single {
+        Room
+            .databaseBuilder(androidApplication(), AppDataBaseFullPage::class.java, APP_DATABASE_FULL_PAGE)
+            .build()
+    }
+    single {
+        get<AppDataBaseFullPage>().fullPageDao()
     }
 }

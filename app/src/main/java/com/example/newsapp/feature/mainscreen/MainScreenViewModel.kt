@@ -6,13 +6,16 @@ import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticlesInteractor
+import com.example.newsapp.feature.fullpage.domain.FullPageInteractor
 import kotlinx.coroutines.launch
 import java.lang.ref.Cleaner.create
 import java.net.URI.create
 
 class MainScreenViewModel(
     private val interactor: ArticlesInteractor,
-    private val bookmarksInteractor: BookmarksInteractor
+    private val bookmarksInteractor: BookmarksInteractor,
+    private val fullPageInteractor: FullPageInteractor
+
 ) : BaseViewModel<ViewState>() {
 
     init {
@@ -24,6 +27,8 @@ class MainScreenViewModel(
         articleShown = emptyList(),
         isSearchEnabled = false,
     )
+
+
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {
         when (event) {
@@ -57,7 +62,7 @@ class MainScreenViewModel(
 
             is UiEvent.OnFullClick -> {
                 viewModelScope.launch {
-                    bookmarksInteractor.create(event.article)
+                    fullPageInteractor.create(event.article)
                 }
                 return null
             }

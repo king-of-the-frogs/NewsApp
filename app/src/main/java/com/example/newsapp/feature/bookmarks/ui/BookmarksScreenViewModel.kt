@@ -3,15 +3,18 @@ package com.example.newsapp.feature.bookmarks.ui
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
-import com.example.newsapp.feature.bookmarks.data.local.BookmarksDao
+import com.example.newsapp.feature.bookmarks.data.local.model.BookmarksDao
 import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticleModel
+import com.example.newsapp.feature.fullpage.domain.FullPageInteractor
+import com.example.newsapp.feature.mainscreen.UiEvent
 import kotlinx.coroutines.launch
 
 class BookmarksScreenViewModel(
     private val interactor: BookmarksInteractor,
-    private val bookmarksDao: BookmarksDao
+    private val bookmarksDao: BookmarksDao,
+    private val fullPageInteractor: FullPageInteractor,
 ) : BaseViewModel<ViewState>() {
 
     init {
@@ -27,12 +30,15 @@ class BookmarksScreenViewModel(
         processDataEvent(DataEvent.DelBookmark(article))
     }
 
-    fun ArticleModel.toBookmarkEntity(): BookmarkEntity {
+    private fun ArticleModel.toBookmarkEntity(): BookmarkEntity {
         return BookmarkEntity(
             title = this.title,
             url = this.url,
             author = this.author,
             publishedAt = this.publishedAt,
+            description = this.description,
+            urlToImage = this.urlToImage,
+            content = this.content
         )
     }
 
@@ -55,6 +61,13 @@ class BookmarksScreenViewModel(
                     bookmarksShown = event.bookmarks,
                     bookmarksList = event.bookmarks
                 )
+            }
+
+            is UiEvent.OnFullClick -> {
+                viewModelScope.launch {
+                    fullPageInteractor.create(event.article)
+                }
+                return null
             }
 
             is DataEvent.DelBookmark -> {

@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.bookmarks.data.local
+package com.example.newsapp.feature.bookmarks.data.local.model
 
 import androidx.room.*
 import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity

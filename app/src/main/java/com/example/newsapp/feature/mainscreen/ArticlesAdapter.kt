@@ -1,25 +1,18 @@
 package com.example.newsapp.feature.mainscreen
 
-import android.content.ClipData.newIntent
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.example.newsapp.FullPageActivity
 import com.example.newsapp.R
-import com.example.newsapp.feature.bookmarks.ui.BookmarksAdapter
 import com.example.newsapp.feature.domain.ArticleModel
-
-import com.squareup.picasso.Picasso
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -27,6 +20,7 @@ class ArticlesAdapter(
     val onItemClicked: (Int) -> Unit,
     private val onBookmarkClick: (ArticleModel) -> Unit,
     private val onFullClick: (ArticleModel) -> Unit,
+
 ) :
     RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
@@ -48,14 +42,13 @@ class ArticlesAdapter(
         fun bind(articlesData: ArticleModel, position: Int) {
 
             val formatter = DateTimeFormatter.ofPattern(
-                "yyyy-MM-dd'  'HH:mm:ss"
+                "yyyy-MM-dd'  'HH:mm"
             )
             val parsedDate = LocalDateTime.parse(
                 articlesData.publishedAt,
                 DateTimeFormatter.ISO_DATE_TIME
             )
             val formattedDate = parsedDate.format(formatter)
-
 
             tvDate.text = formattedDate
             tvAuthor.text = articlesData.author
@@ -72,45 +65,80 @@ class ArticlesAdapter(
                 onBookmarkClick.invoke(
                     articlesData
                 )
-            }
-
-            ivFull.setOnClickListener {
-                val intent = FullPageActivity.newIntent(itemView.context, articlesData)
-                itemView.context.startActivity(intent)
-            }
-
-            if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                tvDate.setTextAppearance(R.style.Subtitle1)
-                tvAuthor.setTextAppearance(R.style.Subtitle1)
-                tvTitle.setTextAppearance(R.style.Subtitle1)
-                tvUrl.setTextAppearance(R.style.Subtitle1)
-                ivAddFav.setColorFilter(ContextCompat.getColor(
-                        itemView.context, R.color.black_100
+                ivAddFav.setImageResource(R.drawable.ic_baseline_star_24)
+                if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
+                    ivAddFav.setColorFilter(
+                        ContextCompat.getColor(
+                            itemView.context, R.color.black_100
+                        )
                     )
+
+
+                }
+            }
+
+            ivFull.setOnClickListener{
+                onFullClick.invoke(
+                    articlesData
                 )
             }
 
             itemView.setOnClickListener {
                 onItemClicked(position)
             }
+
+            if (tvTitle.context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            ) {
+                tvDate.setTextAppearance(R.style.Subtitle1)
+                tvAuthor.setTextAppearance(R.style.Subtitle1)
+                tvUrl.setTextAppearance(R.style.Subtitle1)
+                ivFull.setColorFilter(
+                    ContextCompat.getColor(
+                        itemView.context, R.color.black_100
+                    )
+                )
+                ivAddFav.setColorFilter(
+                    ContextCompat.getColor(
+                        itemView.context, R.color.black_100
+                    )
+                )
+            }
         }
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.item_article, viewGroup, false)
+    override fun onCreateViewHolder(
+        viewGroup: ViewGroup,
+        viewType: Int
+    ): ViewHolder {
+        val itemView = LayoutInflater.from(
+            viewGroup.context
+        ).inflate(
+            R.layout.item_article,
+            viewGroup,
+            false
+        )
 
-        return ViewHolder(itemView, onItemClicked, onBookmarkClick, onFullClick)
+        return ViewHolder(
+            itemView,
+            onItemClicked,
+            onBookmarkClick,
+            onFullClick,
+        )
     }
 
     override fun getItemCount() = articlesData.size
 
-    fun setData(articles: List<ArticleModel>) {
+    fun setData(
+        articles: List<ArticleModel>
+    ) {
         articlesData = articles
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ViewHolder, position: Int
+    ) {
         val articleModel = articlesData[position]
         holder.bind(articleModel, position)
     }

@@ -1,13 +1,16 @@
 package com.example.newsapp.feature.bookmarks.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.newsapp.FullPageActivity
 import com.example.newsapp.R
 import com.example.newsapp.feature.domain.ArticleModel
+import com.example.newsapp.feature.mainscreen.UiEvent
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
@@ -22,6 +25,11 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
             },
             onBookmarkDeleteClick = { article ->
                 deleteFromBookmarks(article)
+            },
+            onFullClick = { article ->
+                viewModel.processUiEvent(UiEvent.OnFullClick(article)).also {
+                    requireContext().startActivity(Intent(requireContext(), FullPageActivity::class.java))
+                }
             }
         )
     }

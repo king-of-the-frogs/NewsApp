@@ -7,12 +7,18 @@ fun BookmarkEntity.toDomain() = ArticleModel(
     title = title,
     url = url,
     author = author,
-    publishedAt = publishedAt
+    publishedAt = publishedAt,
+    urlToImage = urlToImage,
+    description = description,
+    content = content,
 )
 
 fun ArticleModel.toEntity() = BookmarkEntity(
     title = title,
     url = url,
     author = author,
-    publishedAt = publishedAt
+    publishedAt = publishedAt,
+    urlToImage = urlToImage,
+    description = description,
+    content = content,
 )
