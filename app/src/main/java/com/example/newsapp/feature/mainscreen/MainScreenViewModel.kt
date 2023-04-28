@@ -8,8 +8,6 @@ import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticlesInteractor
 import com.example.newsapp.feature.fullpage.domain.FullPageInteractor
 import kotlinx.coroutines.launch
-import java.lang.ref.Cleaner.create
-import java.net.URI.create
 
 class MainScreenViewModel(
     private val interactor: ArticlesInteractor,
@@ -27,7 +25,6 @@ class MainScreenViewModel(
         articleShown = emptyList(),
         isSearchEnabled = false,
     )
-
 
 
     override fun reduce(event: Event, previousState: ViewState): ViewState? {

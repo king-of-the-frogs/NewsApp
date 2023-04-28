@@ -8,13 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
 import com.example.newsapp.feature.domain.ArticleModel
 import com.squareup.picasso.Picasso
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -51,9 +48,9 @@ class FullPageAdapter(
 
             tvDate.text = formattedDate
             if (url != null && !url.isEmpty()) {
-                Picasso.get().load(url).into(tvUrlToImage);
+                Picasso.get().load(url).into(tvUrlToImage)
             } else {
-                tvUrlToImage.setImageResource(R.drawable.ic_baseline_menu_book_24);
+                tvUrlToImage.setImageResource(R.drawable.ic_baseline_menu_book_24)
             }
             tvAuthor.text = fullPageData.author
             tvDescription.text = fullPageData.description
@@ -88,6 +85,8 @@ class FullPageAdapter(
                 tvDate.setTextAppearance(R.style.Subtitle1)
                 tvAuthor.setTextAppearance(R.style.Subtitle1)
                 tvUrl.setTextAppearance(R.style.Subtitle1)
+                tvContent.setTextAppearance(R.style.Subtitle1)
+                tvDescription.setTextAppearance(R.style.Subtitle1)
             }
         }
 
@@ -100,9 +99,9 @@ class FullPageAdapter(
         val itemView = LayoutInflater.from(
             viewGroup.context
         ).inflate(
-                R.layout.item_full_article,
-                viewGroup,
-                false
+            R.layout.item_full_article,
+            viewGroup,
+            false
         )
 
         return ViewHolder(

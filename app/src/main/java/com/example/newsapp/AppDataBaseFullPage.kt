@@ -4,11 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.newsapp.di.APP_DATABASE_FULL_PAGE
-import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
-import com.example.newsapp.feature.bookmarks.data.local.model.BookmarksDao
 import com.example.newsapp.feature.fullpage.data.local.model.FullPageDao
 import com.example.newsapp.feature.fullpage.data.local.model.FullPageEntity
 

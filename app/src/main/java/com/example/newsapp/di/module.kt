@@ -51,7 +51,11 @@ val database2Module = module {
 
     single {
         Room
-            .databaseBuilder(androidApplication(), AppDataBaseFullPage::class.java, APP_DATABASE_FULL_PAGE)
+            .databaseBuilder(
+                androidApplication(),
+                AppDataBaseFullPage::class.java,
+                APP_DATABASE_FULL_PAGE
+            )
             .build()
     }
     single {

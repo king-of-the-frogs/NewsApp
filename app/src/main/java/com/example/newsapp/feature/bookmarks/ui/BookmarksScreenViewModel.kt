@@ -3,8 +3,8 @@ package com.example.newsapp.feature.bookmarks.ui
 import androidx.lifecycle.viewModelScope
 import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.base.Event
-import com.example.newsapp.feature.bookmarks.data.local.model.BookmarksDao
 import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
+import com.example.newsapp.feature.bookmarks.data.local.model.BookmarksDao
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticleModel
 import com.example.newsapp.feature.fullpage.domain.FullPageInteractor
@@ -74,7 +74,7 @@ class BookmarksScreenViewModel(
                 val bookmarks = previousState.bookmarksList.toMutableList()
                 bookmarks.remove(event.article)
                 viewModelScope.launch {
-                    bookmarksDao.delete(event.article.toBookmarkEntity()) // удаляем данные о новости из базы данных
+                    bookmarksDao.delete(event.article.toBookmarkEntity())
                 }
                 return previousState.copy(
                     bookmarksList = bookmarks,

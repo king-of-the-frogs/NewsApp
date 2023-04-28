@@ -1,6 +1,5 @@
 package com.example.newsapp.feature.data
 
-import com.example.newsapp.R
 import com.example.newsapp.feature.data.module.ArticleRemoteModel
 import com.example.newsapp.feature.domain.ArticleModel
 

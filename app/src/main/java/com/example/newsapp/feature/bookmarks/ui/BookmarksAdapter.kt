@@ -6,15 +6,12 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.R
-import com.example.newsapp.feature.bookmarks.data.local.model.BookmarkEntity
 import com.example.newsapp.feature.domain.ArticleModel
-import kotlinx.coroutines.NonDisposableHandle.parent
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -34,12 +31,12 @@ class BookmarksAdapter(
         private val onBookmarkDeleteClick: (ArticleModel) -> Unit,
         private val onFullClick: (ArticleModel) -> Unit,
     ) : RecyclerView.ViewHolder(itemView) {
-        private val tvTitle: TextView = itemView.findViewById(R.id.tvBookmarksInfo)
+        private val tvTitle: TextView = itemView.findViewById(R.id.tvBookmarksTitle)
         private val tvAuthor: TextView = itemView.findViewById(R.id.tvBookmarksAuthor)
         private val tvDate: TextView = itemView.findViewById(R.id.tvBookmarksDate)
         private val tvUrl: TextView = itemView.findViewById(R.id.tvBookmarksUrl)
-        private val tvDel: ImageView = itemView.findViewById(R.id.ivDelFav)
-        private val tvFull: ImageView = itemView.findViewById(R.id.ivBookmarksFull)
+        private val ivDel: ImageView = itemView.findViewById(R.id.ivDelFav)
+        private val ivFull: ImageView = itemView.findViewById(R.id.ivBookmarksFull)
 
         fun bind(bookmarkData: ArticleModel, position: Int) {
 
@@ -63,12 +60,12 @@ class BookmarksAdapter(
                 context.startActivity(intent)
             }
 
-            tvDel.setOnClickListener {
+            ivDel.setOnClickListener {
                 onBookmarkDeleteClick.invoke(bookmarkData)
             }
             setOnClickListener(bookmarkData)
 
-            tvFull.setOnClickListener{
+            ivFull.setOnClickListener {
                 onFullClick.invoke(
                     bookmarkData
                 )
@@ -78,7 +75,14 @@ class BookmarksAdapter(
                 tvDate.setTextAppearance(R.style.Subtitle1)
                 tvAuthor.setTextAppearance(R.style.Subtitle1)
                 tvUrl.setTextAppearance(R.style.Subtitle1)
-                tvDel.setColorFilter(ContextCompat.getColor(
+                tvTitle.setTextAppearance(R.style.Subtitle1)
+                ivFull.setColorFilter(
+                    ContextCompat.getColor(
+                        itemView.context, R.color.black_100
+                    )
+                )
+                ivDel.setColorFilter(
+                    ContextCompat.getColor(
                         itemView.context, R.color.black_100
                     )
                 )

@@ -28,7 +28,12 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
             },
             onFullClick = { article ->
                 viewModel.processUiEvent(UiEvent.OnFullClick(article)).also {
-                    requireContext().startActivity(Intent(requireContext(), FullPageActivity::class.java))
+                    requireContext().startActivity(
+                        Intent(
+                            requireContext(),
+                            FullPageActivity::class.java
+                        )
+                    )
                 }
             }
         )

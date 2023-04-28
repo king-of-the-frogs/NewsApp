@@ -2,9 +2,6 @@ package com.example.newsapp.base
 
 import android.content.Context
 import android.content.res.Configuration
-import android.view.View
-import androidx.fragment.app.Fragment
-import androidx.viewbinding.ViewBinding
 
 inline fun <reified T> attempt(func: () -> T): Either<Throwable, T> = try {
     Either.Right(func.invoke())

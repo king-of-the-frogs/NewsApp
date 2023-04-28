@@ -1,13 +1,9 @@
 package com.example.newsapp
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
 import com.example.newsapp.feature.fullpage.ui.FullPageFragment
-import com.example.newsapp.feature.mainscreen.MainScreenFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -29,7 +25,7 @@ class FullPageActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         GlobalScope.launch {
-            appDatabase.fullPageDao().nukeTable()
+            appDatabase.fullPageDao().wipeData()
         }
     }
 

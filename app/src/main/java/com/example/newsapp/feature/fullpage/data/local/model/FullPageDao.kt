@@ -19,5 +19,5 @@ interface FullPageDao {
     suspend fun delete(entity: FullPageEntity)
 
     @Query("DELETE FROM $FULL_PAGE_TABLE")
-    suspend fun nukeTable()
+    suspend fun wipeData()
 }

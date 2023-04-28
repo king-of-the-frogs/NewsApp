@@ -1,93 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="170dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/news"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:backgroundTint="#130E43"
-    android:id="@+id/news">
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp"
-        android:src="@drawable/form_main"/>
+        android:scaleType="centerCrop"
+        android:src="@drawable/form_main" />
+
     <TextView
         android:id="@+id/tvAuthor"
-        android:textColor="@color/white_100"
-        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"/>
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        android:text="Author"
+        android:textColor="@color/white_100" />
 
     <TextView
         android:id="@+id/tvTitle"
-        android:textColor="@color/white_100"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp" />
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="45dp"
+        android:text="Title"
+        android:textColor="@color/white_100" />
 
     <ImageView
         android:id="@+id/ivAddFav"
-        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_margin="10dp"
         android:layout_marginEnd="8dp"
         android:src="@drawable/ic_baseline_star_border_24" />
 
     <TextView
         android:id="@+id/tvDate"
-        android:layout_margin="10dp"
-        android:textColor="@color/white_100"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom" />
-
-    <TextView
-        android:id="@+id/tvDescription"
+        android:layout_gravity="bottom"
         android:layout_margin="10dp"
-        android:textColor="@color/white_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="clip_horizontal"/>
-
-    <TextView
-        android:id="@+id/tvContent"
-        android:layout_margin="10dp"
-        android:textColor="@color/white_100"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
-
+        android:text="Date"
+        android:textColor="@color/white_100" />
 
     <ImageView
         android:id="@+id/ivFull"
-        android:layout_gravity="center|bottom"
-        android:src="@drawable/ic_baseline_expand_more_24"
         android:layout_width="35dp"
-        android:layout_height="35dp"/>
+        android:layout_height="35dp"
+        android:layout_gravity="center|bottom"
+        android:src="@drawable/ic_baseline_expand_more_24" />
 
     <TextView
         android:id="@+id/tvUrl"
-        android:textColor="@color/white_100"
-        android:text="@string/origUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
         android:autoLink="web"
         android:linksClickable="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"/>
-
-    <TextView
-        android:id="@+id/tvUrlToImage"
-        android:textColor="@color/white_100"
-        android:layout_margin="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"/>
+        android:text="@string/origUrl"
+        android:textColor="@color/white_100" />
 
 
 </androidx.cardview.widget.CardView>

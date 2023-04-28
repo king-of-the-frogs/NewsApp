@@ -1,6 +1,5 @@
 package com.example.newsapp.feature.mainscreen
 
-import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.net.Uri
@@ -20,7 +19,7 @@ class ArticlesAdapter(
     private val onBookmarkClick: (ArticleModel) -> Unit,
     private val onFullClick: (ArticleModel) -> Unit,
 
-) :
+    ) :
     RecyclerView.Adapter<ArticlesAdapter.ViewHolder>() {
 
     private var articlesData: List<ArticleModel> = emptyList()
@@ -38,7 +37,7 @@ class ArticlesAdapter(
         private val ivFull: ImageView = itemView.findViewById(R.id.ivFull)
 
 
-        fun bind(articlesData: ArticleModel, position: Int) {
+        fun bind(articlesData: ArticleModel) {
 
             val formatter = DateTimeFormatter.ofPattern(
                 "yyyy-MM-dd'  'HH:mm"
@@ -76,7 +75,7 @@ class ArticlesAdapter(
                 }
             }
 
-            ivFull.setOnClickListener{
+            ivFull.setOnClickListener {
                 onFullClick.invoke(
                     articlesData
                 )
@@ -88,6 +87,7 @@ class ArticlesAdapter(
                 tvDate.setTextAppearance(R.style.Subtitle1)
                 tvAuthor.setTextAppearance(R.style.Subtitle1)
                 tvUrl.setTextAppearance(R.style.Subtitle1)
+                tvTitle.setTextAppearance(R.style.Subtitle1)
                 ivFull.setColorFilter(
                     ContextCompat.getColor(
                         itemView.context, R.color.black_100
@@ -134,6 +134,6 @@ class ArticlesAdapter(
         holder: ViewHolder, position: Int
     ) {
         val articleModel = articlesData[position]
-        holder.bind(articleModel, position)
+        holder.bind(articleModel)
     }
 }
