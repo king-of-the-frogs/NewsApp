@@ -1,6 +1,8 @@
 package com.example.newsapp
 
+import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
@@ -11,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class MainActivity : AppCompatActivity() {
 
     private val bottomNavigationMenu: BottomNavigationView by lazy { findViewById(R.id.bnvBar) }
+    private val container: FrameLayout by lazy { findViewById(R.id.container) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
         bottomNavigationMenu.selectedItemId = R.id.itemMain
+
+        if (container.context.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        ) {
+            container.setBackgroundResource(R.drawable.gradient2_bg)
+        }
     }
 
     private fun selectTab(fragment: Fragment) {

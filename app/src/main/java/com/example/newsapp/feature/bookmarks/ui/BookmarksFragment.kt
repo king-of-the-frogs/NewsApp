@@ -1,10 +1,13 @@
 package com.example.newsapp.feature.bookmarks.ui
 
 import android.content.Intent
+import android.content.res.Configuration
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.newsapp.FullPageActivity
@@ -47,6 +50,12 @@ class BookmarksFragment : Fragment(R.layout.fragment_bookmarks) {
         val view = inflater.inflate(R.layout.fragment_bookmarks, container, false)
         recyclerView = view.findViewById(R.id.rvBookmarksArticles)
         recyclerView.adapter = adapter
+
+        if (recyclerView.context.resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+        ) {
+            recyclerView.setBackgroundResource(R.drawable.gradient2_bg)
+        }
         return view
     }
 

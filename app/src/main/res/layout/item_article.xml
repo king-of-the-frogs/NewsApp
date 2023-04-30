@@ -5,13 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
-    android:backgroundTint="#130E43"
+    android:backgroundTint="@color/black_100"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
     <ImageView
+        android:id="@+id/ivBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="1dp"

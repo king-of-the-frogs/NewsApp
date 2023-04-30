@@ -32,6 +32,7 @@ class FullPageAdapter(
         private val tvUrlToImage: ImageView = itemView.findViewById(R.id.tvFullUrlToImage)
         private val tvContent: TextView = itemView.findViewById(R.id.tvFullContent)
         private val tvDescription: TextView = itemView.findViewById(R.id.tvFullDescription)
+        private val background: ImageView = itemView.findViewById(R.id.ivFullBackground)
 //        private val ivAddFav: ImageView = itemView.findViewById(R.id.ivFullAddFav)
 
         fun bind(fullPageData: ArticleModel) {
@@ -80,13 +81,10 @@ class FullPageAdapter(
 //                }
 //          }
 
-
-            if (tvDate.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                tvDate.setTextAppearance(R.style.Subtitle1)
-                tvAuthor.setTextAppearance(R.style.Subtitle1)
-                tvUrl.setTextAppearance(R.style.Subtitle1)
-                tvContent.setTextAppearance(R.style.Subtitle1)
-                tvDescription.setTextAppearance(R.style.Subtitle1)
+            if (background.context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            ) {
+                background.setImageResource(R.drawable.form_full)
             }
         }
 

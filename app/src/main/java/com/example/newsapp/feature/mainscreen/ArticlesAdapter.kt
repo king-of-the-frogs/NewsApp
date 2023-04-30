@@ -35,7 +35,7 @@ class ArticlesAdapter(
         private val tvUrl: TextView = itemView.findViewById(R.id.tvUrl)
         private val ivAddFav: ImageView = itemView.findViewById(R.id.ivAddFav)
         private val ivFull: ImageView = itemView.findViewById(R.id.ivFull)
-
+        private val background: ImageView = itemView.findViewById(R.id.ivBackground)
 
         fun bind(articlesData: ArticleModel) {
 
@@ -64,15 +64,6 @@ class ArticlesAdapter(
                     articlesData
                 )
                 ivAddFav.setImageResource(R.drawable.ic_baseline_star_24)
-                if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                    ivAddFav.setColorFilter(
-                        ContextCompat.getColor(
-                            itemView.context, R.color.black_100
-                        )
-                    )
-
-
-                }
             }
 
             ivFull.setOnClickListener {
@@ -81,23 +72,10 @@ class ArticlesAdapter(
                 )
             }
 
-            if (tvTitle.context.resources.configuration.uiMode and
+            if (background.context.resources.configuration.uiMode and
                 Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
             ) {
-                tvDate.setTextAppearance(R.style.Subtitle1)
-                tvAuthor.setTextAppearance(R.style.Subtitle1)
-                tvUrl.setTextAppearance(R.style.Subtitle1)
-                tvTitle.setTextAppearance(R.style.Subtitle1)
-                ivFull.setColorFilter(
-                    ContextCompat.getColor(
-                        itemView.context, R.color.black_100
-                    )
-                )
-                ivAddFav.setColorFilter(
-                    ContextCompat.getColor(
-                        itemView.context, R.color.black_100
-                    )
-                )
+                background.setImageResource(R.drawable.form_full)
             }
         }
     }

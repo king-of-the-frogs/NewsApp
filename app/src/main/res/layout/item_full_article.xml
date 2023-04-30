@@ -2,7 +2,9 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    android:id="@+id/nsvRoll">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -18,7 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/form_full"
+                android:src="@drawable/form_main"
                 app:layout_collapseMode="parallax" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -28,7 +30,6 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/gradient_bg"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.cardview.widget.CardView
@@ -36,17 +37,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:backgroundTint="#130E43"
+            android:backgroundTint="@color/black_100"
             app:cardCornerRadius="16dp"
             app:cardElevation="8dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <ImageView
+                android:id="@+id/ivFullBackground"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="1dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/form_full"
+                android:src="@drawable/form_main"
                 app:layout_collapseMode="parallax" />
 
             <TextView

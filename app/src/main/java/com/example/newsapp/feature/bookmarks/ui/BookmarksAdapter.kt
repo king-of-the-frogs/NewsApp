@@ -37,6 +37,7 @@ class BookmarksAdapter(
         private val tvUrl: TextView = itemView.findViewById(R.id.tvBookmarksUrl)
         private val ivDel: ImageView = itemView.findViewById(R.id.ivDelFav)
         private val ivFull: ImageView = itemView.findViewById(R.id.ivBookmarksFull)
+        private val background: ImageView = itemView.findViewById(R.id.ivBookmarksBackground)
 
         fun bind(bookmarkData: ArticleModel, position: Int) {
 
@@ -71,21 +72,10 @@ class BookmarksAdapter(
                 )
             }
 
-            if (tvTitle.context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES) {
-                tvDate.setTextAppearance(R.style.Subtitle1)
-                tvAuthor.setTextAppearance(R.style.Subtitle1)
-                tvUrl.setTextAppearance(R.style.Subtitle1)
-                tvTitle.setTextAppearance(R.style.Subtitle1)
-                ivFull.setColorFilter(
-                    ContextCompat.getColor(
-                        itemView.context, R.color.black_100
-                    )
-                )
-                ivDel.setColorFilter(
-                    ContextCompat.getColor(
-                        itemView.context, R.color.black_100
-                    )
-                )
+            if (background.context.resources.configuration.uiMode and
+                Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+            ) {
+                background.setImageResource(R.drawable.form_full)
             }
         }
 

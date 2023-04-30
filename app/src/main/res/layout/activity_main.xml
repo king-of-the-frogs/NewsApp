@@ -18,6 +18,15 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:src="@drawable/line"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintTop_toTopOf="@+id/bnvBar">
+
+    </ImageView>
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnvBar"
         android:layout_width="0dp"
