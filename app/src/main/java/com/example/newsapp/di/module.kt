@@ -4,6 +4,7 @@ import androidx.room.Room
 import com.example.newsapp.AppDataBaseFullPage
 import com.example.newsapp.AppDatabase
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
@@ -23,7 +24,6 @@ val networkModule = module {
         OkHttpClient
             .Builder()
             .build()
-
     }
 
     single<Retrofit> {
@@ -39,7 +39,10 @@ val networkModule = module {
 val database1Module = module {
     single {
         Room
-            .databaseBuilder(androidContext(), AppDatabase::class.java, APP_DATABASE_BOOKMARKS)
+            .databaseBuilder(androidContext(),
+                AppDatabase::class.java,
+                APP_DATABASE_BOOKMARKS
+            )
             .fallbackToDestructiveMigration()
             .build()
     }
@@ -56,6 +59,7 @@ val database2Module = module {
                 AppDataBaseFullPage::class.java,
                 APP_DATABASE_FULL_PAGE
             )
+            .fallbackToDestructiveMigration()
             .build()
     }
     single {

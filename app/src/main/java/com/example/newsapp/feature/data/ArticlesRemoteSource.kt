@@ -7,4 +7,7 @@ class ArticlesRemoteSource(private val api: NewsApi) {
     suspend fun getArticles(): ArticlesRemoteModel {
         return api.getArticles()
     }
+    suspend fun postArticles(): ArticlesRemoteModel {
+        return api.postArticles()
+    }
 }
