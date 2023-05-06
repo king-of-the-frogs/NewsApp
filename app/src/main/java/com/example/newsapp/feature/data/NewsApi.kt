@@ -18,6 +18,12 @@ interface NewsApi {
         @Query("pageSize") pageSize: Int = 100
     ): ArticlesRemoteModel
 
+    @GET("v2/everything")
+    suspend fun getWorldArticles(
+        @Query("apiKey") apiKey: String = API_KEY,
+        @Query("pageSize") pageSize: Int = 100
+    ): ArticlesRemoteModel
+
     @FormUrlEncoded
     @POST("v2/top-headlines")
     suspend fun postArticles(

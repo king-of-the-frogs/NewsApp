@@ -9,4 +9,10 @@ class ArticlesRepositoryImpl(private val source: ArticlesRemoteSource) : Article
             it.toDomain()
         }.sortedByDescending { it.publishedAt }
     }
+
+    override suspend fun getWorldArticles(): List<ArticleModel> {
+        return source.getWorldArticles().articleList.map {
+            it.toDomain()
+        }.sortedByDescending { it.publishedAt }
+    }
 }

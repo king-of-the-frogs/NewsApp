@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.mainscreen
+package com.example.newsapp.feature.worldnews
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
@@ -7,14 +7,18 @@ import com.example.newsapp.base.Event
 import com.example.newsapp.feature.bookmarks.domain.BookmarksInteractor
 import com.example.newsapp.feature.domain.ArticlesInteractor
 import com.example.newsapp.feature.fullpage.domain.FullPageInteractor
+import com.example.newsapp.feature.mainscreen.DataEvent
+import com.example.newsapp.feature.mainscreen.UiEvent
+import com.example.newsapp.feature.mainscreen.ViewState
 import kotlinx.coroutines.launch
 
-class MainScreenViewModel(
+class WorldNewsViewModel(
     private val interactor: ArticlesInteractor,
+    private val mainInteractor: ArticlesInteractor,
     private val bookmarksInteractor: BookmarksInteractor,
     private val fullPageInteractor: FullPageInteractor,
 
-) : BaseViewModel<ViewState>() {
+    ) : BaseViewModel<ViewState>() {
 
     init {
         processDataEvent(DataEvent.LoadArticles)
@@ -32,7 +36,7 @@ class MainScreenViewModel(
 
             is DataEvent.LoadArticles -> {
                 viewModelScope.launch {
-                    interactor.getArticles().fold(
+                    interactor.getWorldArticles().fold(
                         onError = {
                             Log.e("ERROR", it.localizedMessage)
                         },
@@ -56,6 +60,7 @@ class MainScreenViewModel(
                 }
                 return null
             }
+
             is UiEvent.OnBookmarkClicked -> {
                 viewModelScope.launch {
                     bookmarksInteractor.create(event.article)

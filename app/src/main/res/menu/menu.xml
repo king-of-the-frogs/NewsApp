@@ -8,4 +8,8 @@
     <item android:id="@+id/itemBookmarks"
         android:icon="@drawable/ic_baseline_bookmarks_24"
         android:title="@string/favorite"/>
+
+    <item android:id="@+id/itemWorld"
+        android:icon="@drawable/ic_baseline_workspace_premium_24"
+        android:title="@string/world_news"/>
 </menu>

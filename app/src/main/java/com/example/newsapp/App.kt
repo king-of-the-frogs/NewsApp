@@ -8,6 +8,7 @@ import com.example.newsapp.di.networkModule
 import com.example.newsapp.feature.bookmarks.di.bookmarksModule
 import com.example.newsapp.feature.di.mainScreenModule
 import com.example.newsapp.feature.fullpage.di.fullPageModule
+import com.example.newsapp.feature.worldnews.worldNewsScreenModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -26,7 +27,8 @@ class App : Application() {
                 bookmarksModule,
                 fullPageModule,
                 database1Module,
-                database2Module
+                database2Module,
+                worldNewsScreenModule
             )
         }
 

@@ -1,4 +1,4 @@
-package com.example.newsapp.feature.di
+package com.example.newsapp.feature.worldnews
 
 import com.example.newsapp.feature.data.ArticlesRemoteSource
 import com.example.newsapp.feature.data.ArticlesRepository
@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
-val mainScreenModule = module {
+val worldNewsScreenModule = module {
     single<NewsApi> {
         get<Retrofit>().create(NewsApi::class.java)
     }
@@ -28,10 +28,11 @@ val mainScreenModule = module {
     }
 
     viewModel {
-        MainScreenViewModel(
+        WorldNewsViewModel(
             interactor = get(),
             bookmarksInteractor = get(),
             fullPageInteractor = get(),
+            mainInteractor = get()
         )
     }
 }

@@ -11,6 +11,10 @@ import com.google.gson.JsonObject
 
 class ArticlesInteractor(private val repository: ArticlesRepository) {
 
+    suspend fun getWorldArticles(): Either<Throwable, List<ArticleModel>> = attempt {
+        repository.getWorldArticles()
+    }
+
     suspend fun getArticles(): Either<Throwable, List<ArticleModel>> = attempt {
 
         val gson = Gson()
@@ -61,5 +65,6 @@ class ArticlesInteractor(private val repository: ArticlesRepository) {
 
         Log.d("Json => ", json1.toString())
 
-        repository.getArticles() }
+        repository.getArticles()
+    }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.newsapp.feature.bookmarks.ui.BookmarksFragment
 import com.example.newsapp.feature.mainscreen.MainScreenFragment
+import com.example.newsapp.feature.worldnews.WorldNewsScreenFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.itemBookmarks -> {
                     selectTab(BookmarksFragment())
+                }
+                R.id.itemWorld -> {
+                    selectTab(WorldNewsScreenFragment())
                 }
                 else -> {}
             }

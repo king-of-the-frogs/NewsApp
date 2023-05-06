@@ -3,4 +3,5 @@
     <string name="main">Home</string>
     <string name="favorite">Favorites</string>
     <string name="origUrl">Go to the source</string>
+    <string name="world_news">World news</string>
 </resources>
